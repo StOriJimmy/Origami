@@ -1,24 +1,30 @@
-var axiom1 = new OrigamiPaper("canvas-axiom-1").setPadding(0.05);
-axiom1.circleStyle = {radius: 0.02, strokeWidth: 0.01, strokeColor:axiom1.styles.byrne.blue};
-axiom1.style.valley.strokeColor = axiom1.styles.byrne.red;
+let axiom1 = RabbitEar.Origami();
+let drawGroup = RabbitEar.svg.group();
+axiom1.svg.appendChild(drawGroup);
+
+axiom1.points = [ [0.25, 0.25], [0.7, 0.75] ];
 
 axiom1.redraw = function(){
-	this.cp.clear();
-	var crease = this.cp.creaseThroughPoints(this.selectable[0].position, this.selectable[1].position);
-	if(crease){ crease.valley(); }
-	this.draw();
+	RabbitEar.svg.removeChildren(drawGroup);
+	axiom1.points.forEach(p => RabbitEar.svg.circle(p[0], p[1], 0.015, "touch", null, drawGroup));
+	let linePoint = axiom1.points[0];
+	let lineVector = [0,1].map(i => axiom1.points[1][i] - axiom1.points[0][i]);
+	let newCP = RabbitEar.fold.clip_edges_with_line(RabbitEar.fold.clone(RabbitEar.bases.unitSquare), linePoint, lineVector);
+	newCP.edges_assignment[newCP.edges_assignment.length-1] = "V";
+	axiom1.cp = newCP;
 }
-axiom1.reset = function(){
-	this.makeControlPoints(2, this.circleStyle);
-	[[0.0, 0.0],[1.0, 1.0]].forEach(function(el,i){this.selectable[i].position = el;},this);
-	this.redraw();
-}
-axiom1.reset();
+axiom1.redraw();
 
-axiom1.onFrame = function(event){ }
-axiom1.onResize = function(event){ }
-axiom1.onMouseMove = function(event){
-	if(this.mouse.isPressed){ this.redraw(); }
+axiom1.onMouseMove = function(mouse){
+	if(mouse.isPressed && axiom1.selected != null){
+		axiom1.points[axiom1.selected] = mouse.position;
+		axiom1.redraw();
+	}
 }
-axiom1.onMouseDown = function(event){ }
-axiom1.onMouseUp = function(event){ }
+
+axiom1.onMouseDown = function(mouse){
+	let ep = 5e-2;
+	let down = axiom1.points.map(p => Math.abs(mouse.x - p[0]) < ep && Math.abs(mouse.y - p[1]) < ep);
+	let found = down.map((b,i) => b ? i : undefined).filter(a => a != undefined).shift();
+	axiom1.selected = found;
+}

@@ -1,0 +1,22 @@
+:root{ --crease-width: 0.01; }
+
+svg{
+	width:40vmax;
+	height:40vmax;
+}
+
+.mountain, .valley, .boundary, .mark {
+	stroke:black;
+	stroke-linecap: round;
+	stroke-width: var(--crease-width);
+}
+.node, .face, .sector{
+	stroke: none;
+	fill: none;
+}
+.folded-face{
+	fill:rgba(255, 255, 255, 0.5);
+}
+.boundary{ fill:#FFFFFF; }
+.mark{ stroke-width: calc( var(--crease-width) * 0.25); }
+.valley{ stroke-dasharray: calc( var(--crease-width) * 1.5) calc( var(--crease-width) * 2) }

@@ -1,73 +1,21 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
+<!DOCTYPE html>
 <title></title>
-<style>
-html, body {
-	margin: 0;
-	overflow: hidden;
-	height: 100%;
-	text-align:center;
-}
-canvas[resize] {
-	width: 90vmin;
-	height: 90vmin;
-}
-canvas{
-	width: 90vmin;
-	height: 90vmin;
-}
-.dropdown{
-	margin-bottom: 15px;
-}
-</style>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="../lib/d3.min.js"></script>
-<script type="text/javascript" src="../lib/paper-full.min.js"></script>
-<script type="text/javascript" src="../dist/cp.js"></script>
-<script type="text/javascript" src="../dist/cp.paperjs.js"></script>
-</head>
-<body>
-	<div class="dropdown">
-		<select id="file-select"></select>
-	</div>
-	<canvas id="canvas" resize"></canvas>
-<script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<body></body>
+<script type="text/javascript" src="../rabbit-ear.js"></script>
+<script type="text/javascript" src="_jquery.min.js"></script>
 
+<script>
 // load a file in url bar using hash mark:
 //     _tests.html#axiom1
 // or  _tests.html#axiom1.js
 //
-var loadOnBoot = "axiom1.js";
+var loadOnBoot = "crease_edges.js";
 if(window.location.hash != undefined && window.location.hash != ""){
 	loadOnBoot = window.location.hash.substr(1);
 	if(loadOnBoot.length > 3 && loadOnBoot.substr(loadOnBoot.length-3) != '.js'){
 		loadOnBoot += ".js";
 	}
 }
-
 $.getScript(loadOnBoot, function(arg){});
-// all files
-var filenames = [
-	"axiom1.js",
-	"axiom2.js",
-	"axiom3.js",
-	"axiom4.js",
-	"axiom5.js",
-	"axiom7.js"
-];
-var fileSelect = document.getElementById("file-select");
-for(var i = 0; i < filenames.length; i++){
-	var option = document.createElement("option");
-	option.text = filenames[i];
-	fileSelect.add(option);
-}
-$("#file-select").change(function(event){
-	var url = $("#file-select").val();
-	$.getScript(url, function(arg){});
-});
 </script>
- 
-</body>
-</html>

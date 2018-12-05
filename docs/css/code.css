@@ -1,0 +1,64 @@
+code, pre {
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	text-align: left;
+	color: #f8f8f2;
+	background: none;
+	line-height: 1.5;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+pre {
+	padding: 1em;
+	margin: 2em auto;
+	display: block;
+	overflow: auto;
+	border-radius: 0.3em;
+	background: #272822;
+	max-width: 600px;
+	width: 450px;
+	min-width: 200px;
+}
+
+code a, code a:visited, code a:active, code a:hover{
+	font-weight: normal;
+	text-decoration: none;
+	/*border-bottom-width: 0.5px;*/
+	/*border-style: solid;*/
+	/*border-color: white;*/
+}
+code a:hover{
+	/*border-style: none;*/
+}
+/* the following are short to allow quick typing */
+
+c{ /* comment */
+	color: #708090;
+}
+f{ /* function */
+	color: #66D9EF;
+}
+n, .n { /* number */
+	color: #AE81FF;
+}
+v, def{ /* variable */
+	color: #A6E22E;
+}
+op, key{ /* operator */
+	color: #F92672;
+}
+str { /* string */
+	color: #E6DB74;
+}
+arg{ /* argument */
+	color: #FD9720;
+}

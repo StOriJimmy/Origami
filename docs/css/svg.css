@@ -1,0 +1,23 @@
+:root{ --crease-width: 0.01; }
+
+.mountain, .valley, .boundary, .mark {
+	stroke:black;
+	stroke-linecap: round;
+	stroke-width: var(--crease-width);
+}
+.vertex, .face, .sector{
+	stroke: none;
+	fill: none;
+}
+.vertex{ fill: hsl(43, 88%, 46%); }
+.boundary{ fill:none; }
+.mark{
+	stroke-width: calc( var(--crease-width) * 0.25);
+}
+.valley{
+	stroke-dasharray: calc( var(--crease-width) * 1.5) calc( var(--crease-width) * 2)
+}
+.touch{
+	stroke: none;
+	fill: hsl(14.4, 87%, 45%);
+}
